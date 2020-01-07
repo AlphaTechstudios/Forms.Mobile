@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Forms.Mobile.Views.LoginPage">
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Label Text="Login or password is incorrect!"
+               HorizontalOptions="Center"
+               TextColor="#FFF"
+               FontSize="20"
+               IsVisible="{Binding IsLoginErrorVisible}"
+               BackgroundColor="#FF8800"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Login:"
+                   FontSize="20"
+                   WidthRequest="95"
+                   HorizontalTextAlignment="End"
+                   TextColor="#000"
+                   VerticalOptions="Center"/>
+            <Entry Placeholder="Email"
+                   FontSize="18"
+                   Text="{Binding Login, Mode=TwoWay}"
+                   WidthRequest="200"
+                   VerticalOptions="Center">
+                <Entry.Behaviors>
+                    <prism:EventToCommandBehavior EventName="TextChanged"  
+                                                  Command="{Binding ValidateLoginCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+        </StackLayout>
+        <Label IsVisible="{Binding IsLoginInValid}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Text="Email is required field!"
+                   FontSize="12"
+                   FontAttributes="Italic" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Password:"
+                   HorizontalTextAlignment="End"
+                   FontSize="20"
+                   TextColor="#000"
+                   VerticalOptions="Center"/>
+            <Entry Placeholder="Password"
+                   IsPassword="True"
+                   FontSize="18"
+                   Text="{Binding Pwd, Mode=TwoWay}"
+                   WidthRequest="200"
+                   VerticalOptions="Center">
+                <Entry.Behaviors>
+                    <prism:EventToCommandBehavior EventName="TextChanged"  
+                                                  Command="{Binding ValidatePwdCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+        </StackLayout>
+        <Label IsVisible="{Binding IsPwdInValid}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Text="Password is required field!"
+                   FontSize="12"
+                   FontAttributes="Italic" />
+        <StackLayout HorizontalOptions="Center"
+                     Margin="0,10">
+            <Button Text="Sign in"
+                    BackgroundColor="#09C"
+                    TextColor="#FFF"
+                    Command="{Binding SignInCommand}"
+                    WidthRequest="150"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
