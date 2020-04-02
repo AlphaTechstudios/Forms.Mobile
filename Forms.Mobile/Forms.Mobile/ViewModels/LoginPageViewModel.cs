@@ -91,18 +91,19 @@ namespace Forms.Mobile.ViewModels
 
         private async void SignIp()
         {
-            // Call Service for login.
-            var user = await authenticationService.Login(new LoginModel { Email = Login, Password = Pwd });
-            if (user != null)
-            {
+            await NavigationService.NavigateAsync("MainPage");
+            //// Call Service for login.
+            //var user = await authenticationService.Login(new LoginModel { Email = Login, Password = Pwd });
+            //if (user != null)
+            //{
 
-                await NavigationService.NavigateAsync("MainPage");
-            }
-            else
-            {
-                // Show login error;
-                IsLoginErrorVisible = true;
-            }
+            //    await NavigationService.NavigateAsync("MainPage");
+            //}
+            //else
+            //{
+            //    // Show login error;
+            //    IsLoginErrorVisible = true;
+            //}
         }
     }
 }
